@@ -14,7 +14,6 @@ resources:
 
 ---
 
-
 {{< tool-image >}}
 
 Access it {{< tool-link link_text="here" >}}.

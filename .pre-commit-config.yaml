@@ -26,10 +26,13 @@ repos:
                 - --no-ensure-ascii
 
     # Fix any markdown issues w/ the rendered docs
-    - repo: https://github.com/DavidAnson/markdownlint-cli2
-      rev: v0.23.2
+    - repo: local
       hooks:
-          - id: markdownlint-cli2
+          - id: rumdl
+            name: rumdl (mise)
+            entry: mise exec rumdl -- rumdl check --fix
+            language: system
+            types: [markdown]
 
     - repo: https://github.com/astral-sh/ruff-pre-commit
       rev: v0.16.8

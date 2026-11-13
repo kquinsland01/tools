@@ -1,0 +1,9 @@
+# Preserve the existing Markdown style policy.
+# Defer additional rumdl-only checks during the runner migration.
+[global]
+disable = ["MD013", "MD033", "MD057", "MD062", "MD064", "MD065", "MD071", "MD076", "MD077"]
+respect-gitignore = true
+exclude = ["archetypes/*.md", "PROBLEM.md", "layouts/**/*.md", "content/tools/**/changelog.md", "CHANGELOG.md"]
+
+[MD025]
+front-matter-title = ""

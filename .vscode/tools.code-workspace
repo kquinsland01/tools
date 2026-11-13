@@ -1,10 +1,16 @@
 {
+    "extensions": {
+        "recommendations": ["rvben.rumdl"]
+    },
     "folders": [
         {
             "path": ".."
         }
     ],
     "settings": {
+        "editor.codeActionsOnSave": {
+            "source.fixAll.rumdl": "explicit"
+        },
         "cSpell.words": [
             "Bookerly",
             "bookmarkable",
