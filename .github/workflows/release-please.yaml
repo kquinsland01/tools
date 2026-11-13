@@ -74,7 +74,7 @@ jobs:
         name: deploy GitHub Pages
         needs: release-please
         if: ${{ needs.release-please.outputs.release_created == 'true' }}
-        uses: ./.github/workflows/pages.yaml
+        uses: $/.github/workflows/pages.yaml
         permissions:
             contents: read
             pages: write
