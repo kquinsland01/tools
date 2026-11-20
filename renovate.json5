@@ -1,40 +1,32 @@
 {
-    $schema: "https://docs.renovatebot.com/renovate-schema.json",
+    $schema: 'https://docs.renovatebot.com/renovate-schema.json',
     extends: [
-        "config:best-practices",
-        ":enablePreCommit",
-        "helpers:githubDigestChangelogs",
-        "helpers:pinGitHubActionDigestsToSemver"
+        'config:best-practices',
+        ':enablePreCommit',
+        'helpers:githubDigestChangelogs',
+        'helpers:pinGitHubActionDigestsToSemver',
     ],
     configMigration: true,
-    dependencyDashboard: true,
-    // Renovate is very good at it's job... I only want to deal with PRs when I have time and not burn a ton of
-    // CI resources on PRs that I can't review immediately. This also gives me time to batch updates together.
-    schedule: [
-        "on monday",
-        "on thursday"
-    ],
-    // Since themes are sub-modules
-    "git-submodules": {
-        "enabled": true
+    dependencyDashboard: {
+        enabled: true,
     },
-    // Tell Renovate about the Hugo version pin in the GHA workflows
-    // See: https://docs.renovatebot.com/modules/manager/regex/
-    "customManagers": [
+    schedule: [
+        'on monday',
+        'on thursday',
+    ],
+    'git-submodules': {
+        enabled: true,
+    },
+    customManagers: [
         {
-            "customType": "regex",
-            "managerFilePatterns": [
-                // Should match all yml/yaml files in the .github/workflows folder
-                "/.github/workflows/*.ya?ml$/"
+            customType: 'regex',
+            managerFilePatterns: [
+                '/.github/workflows/*.ya?ml$/',
             ],
-            "matchStrings": [
-                // Tested with: https://regex101.com/r/TtSoxE/1
-                // Capture the datasource, depName, versioning from the comment line
-                // Then capture the currentValue from the yaml on the next line
-                '# renovate: datasource=(?<datasource>.*?) depName=(?<depName>.*?)(?: versioning=(?<versioning>\\S+))?\\s*\\n\\s*hugo-version:\\s*(?<currentValue>[^\\s]+)'
+            matchStrings: [
+                '# renovate: datasource=(?<datasource>.*?) depName=(?<depName>.*?)(?: versioning=(?<versioning>\\S+))?\\s*\\n\\s*hugo-version:\\s*(?<currentValue>[^\\s]+)',
             ],
-            // The regex above has `versioning` as an optional capture group, so we need to handle that in the template. If set, use the value, otherwise default to 'semver'.
             versioningTemplate: '{{#if versioning}}{{{versioning}}}{{else}}semver{{/if}}',
-        }
-    ]
+        },
+    ],
 }
